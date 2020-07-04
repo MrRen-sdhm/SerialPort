@@ -31,6 +31,7 @@ make -j8
 ```
 # 安装socat
 sudo apt-get install socat
+
 # 设置/dev/ttyS0和/dev/ttyS1为测试串口
 sudo socat -d -d pty,raw,echo=0,link=/dev/ttyS0 pty,raw,echo=0,link=/dev/ttyS1
 ```
@@ -62,6 +63,8 @@ sudo ./SerialPort2
 
 ### 4、附录
 
+参考文献：《UNIX环境高级编程》第18章 终端I/O
+
 表1 c_iflag参数表
 
 | 键 值   | 说 明                                             |
@@ -71,7 +74,7 @@ sudo ./SerialPort2
 | IGNPAR  | 忽略奇偶校验错误                                  |
 | PARMRK  | 标识奇偶校验错误                                  |
 | INPCK   | 允许输入奇偶校验                                  |
-| ISTRIP  | 去除字符的第8个比特                               |
+| ISTRIP  | 剥除输入字符的第 8 位                             |
 | INLCR   | 将输入的NL（换行）转换成CR（回车）                |
 | IGNCR   | 忽略输入的回车                                    |
 | ICRNL   | 将输入的回车转化成换行（如果IGNCR未设置的情况下） |
@@ -151,7 +154,7 @@ sudo ./SerialPort2
 
 c_iflag 参数用来控制输入，即串口读取设置。
 
-其中 ISTRIP 位用于去除字符的第8个比特，数据位为8位时需要清除此标志，切勿设置此位！
+其中 ISTRIP 位用于剥除输入字符的第 8 位，数据位为 8 位时需要清除此标志，切勿设置此位！
 
 ISTRIP 位设置后会导致数据第8位丢失，例如发送 0x8E 则会接收到 0x0E ！！！
 
